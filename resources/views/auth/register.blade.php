@@ -71,7 +71,7 @@
                         <hr>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <a href="{{ url('/login/facebook') }}" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+                                <a href="{{ url('/login/facebook') }}" class="btn btn-facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
                             </div>
                         </div>
                     </form>

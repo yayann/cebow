@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\OutageRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+
+    public function welcome(OutageRepository $outageRepository)
     {
-        $this->middleware('auth');
+
+        $outages = $outageRepository->scopeQuery(function($query){
+            return $query->future();
+        })->all();
+
+        return view('welcome', compact('outages'));
     }
 
     /**
@@ -23,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         return view('home');
     }
 }

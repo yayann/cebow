@@ -25,6 +25,11 @@ class Outage extends Model implements Transformable
     protected $fillable = ['hash', 'outage_from', 'outage_to', 'locality', 'roads'];
 
     /**
+     * @var array
+     */
+    protected $dates = ['outage_from', 'outage_to'];
+
+    /**
      * @param $query
      */
     public function scopeFuture($query)

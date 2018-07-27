@@ -20,6 +20,6 @@ class Subscriber extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['user_id', 'locality', 'street'];
 
 }

@@ -17,8 +17,12 @@ class CreateSubscribersTable extends Migration
 	{
 		Schema::create('subscribers', function(Blueprint $table) {
             $table->increments('id');
+			$table->unsignedInteger('user_id');
+			$table->string('locality');
+			$table->string('street')->nullable();
+			$table->timestamps();
 
-            $table->timestamps();
+			$table->foreign('user_id')->references('id')->on('users');
 		});
 	}
 
