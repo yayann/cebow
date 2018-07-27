@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Events\OutagePlanned;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\OutageRepository;
@@ -25,7 +26,6 @@ class OutageRepositoryEloquent extends BaseRepository implements OutageRepositor
         return Outage::class;
     }
 
-    
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +34,17 @@ class OutageRepositoryEloquent extends BaseRepository implements OutageRepositor
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    /**
+     * @param array $attributes
+     * @return mixed
+     */
+    public function create(array $attributes)
+    {
+        $model = parent::create($attributes);
+        event(new OutagePlanned($model));
+
+        return $model;
+    }
+
 }
