@@ -24,6 +24,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(\App\Repositories\OutageRepository::class, \App\Repositories\OutageRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\SubscriberRepository::class, \App\Repositories\SubscriberRepositoryEloquent::class);
         //:end-bindings:
     }
 }

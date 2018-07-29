@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -21,5 +22,11 @@ class Subscriber extends Model implements Transformable
      * @var array
      */
     protected $fillable = ['user_id', 'locality', 'street'];
+
+
+    protected function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

@@ -20,4 +20,7 @@ Auth::routes();
 
 Route::group(['middelware' => 'auth'], function() {
     Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::post('/subscribe', 'SubscriberController@store')->name('subscriber.store');
+    Route::delete('/subscribe/{id}', 'SubscriberController@destroy')->name('subscriber.destroy');
 });

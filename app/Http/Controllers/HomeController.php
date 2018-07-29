@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Http\Requests\AuthenticatedRequest;
 use App\Repositories\OutageRepository;
 use Illuminate\Http\Request;
 
@@ -23,9 +25,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AuthenticatedRequest $request)
     {
+        $subscriptions = Auth::user()->subscriptions;
 
-        return view('home');
+        return view('home', compact('subscriptions'));
     }
 }
