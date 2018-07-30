@@ -2,10 +2,12 @@
 
 namespace App\Listeners;
 
+use App\Events\OutagePlanned;
+use App\Jobs\AnalyzeOutageJob;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OutagePlannedListener
+class OutagePlannedListener implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -23,8 +25,8 @@ class OutagePlannedListener
      * @param  object  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(OutagePlanned $event)
     {
-        //
+        dispatch(new AnalyzeOutageJob($event->outage));
     }
 }

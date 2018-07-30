@@ -49,7 +49,7 @@
                             {{  bs()->formGroup()
                                     ->control(bs()->inputGroup(bs()->text('street')))
                                     ->label('Street', false)
-                                    ->helpText("If provided, we will only warn you if your street name comes up")
+                                    ->helpText("If provided, we will only warn you if your street name matches")
                                     ->showAsRow() }}
 
                             {{   bs()->submit('Add') }}
