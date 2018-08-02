@@ -14,7 +14,7 @@
 
                             <h3>Places you're watching</h3>
                             <ul>
-                                @foreach($subscriptions as $subscription)
+                                @forelse($subscriptions as $subscription)
                                     <li>
                                         <b>{{$subscription->locality}}</b>
                                         @if($subscription->street)
@@ -29,7 +29,9 @@
                                                 }}
                                         {{ bs()->closeForm() }}
                                     </li>
-                                @endforeach
+                                @empty
+                                    No watched places yet
+                                @endforelse
                             </ul>
 
                         </div>
