@@ -25,7 +25,7 @@ class SubscriberController extends Controller
             flash()->error('Could not add place to watch');
         }
 
-        return redirect('home');
+        return redirect(route('home'));
     }
 
     public function destroy(AuthenticatedRequest $request, SubscriberRepository $repository, $id)
@@ -41,6 +41,6 @@ class SubscriberController extends Controller
             flash()->error('Could not delete place');
         }
 
-        return redirect('home');
+        return redirect(route('home'));
     }
 }
