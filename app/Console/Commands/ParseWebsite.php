@@ -38,6 +38,6 @@ class ParseWebsite extends Command
      */
     public function handle()
     {
-        dispatch(new ParseWebsiteJob());
+        dispatch_now(new ParseWebsiteJob());
     }
 }

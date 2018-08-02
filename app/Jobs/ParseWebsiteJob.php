@@ -38,11 +38,6 @@ class ParseWebsiteJob implements ShouldQueue
         $table = static::getOutagesTable($doc);
 
         static::saveOutages($table);
-
-        /*$outages = new DOMDocument();
-        $outages->appendChild($outages->importNode($table, true));
-
-        \Log::debug($outages->saveHTML());*/
     }
 
     /**
@@ -56,13 +51,6 @@ class ParseWebsiteJob implements ShouldQueue
         foreach ($doc->getElementsByTagName('table') as $table) {
             /** @var DOMNode $row */
             $row = $table->getElementsByTagName('tr')->item(0);
-
-            /*\Log::debug($row->childNodes->length);
-            \Log::debug($row->textContent);*/
-
-            /*foreach($row->getElementsByTagName('td') as $node){
-                \Log::debug(print_r($node, true));
-            }*/
 
             /** @var \DOMNodeList $cells */
             $cells = $row->getElementsByTagName('td');

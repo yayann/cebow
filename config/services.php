@@ -41,4 +41,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'botman' => [
+        'facebook_token' => env('FACEBOOK_PAGE_ACCESS_TOKEN'),
+        'facebook_app_secret' => env('FACEBOOK_VERIFY_TOKEN'), // Optional - this is used to verify incoming API calls,
+        'facebook_verification' => env('FACEBOOK_VERIFY_TOKEN'), // Optional - this is used to verify incoming API calls,
+    ],
+
 ];
