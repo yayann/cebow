@@ -27,6 +27,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->command('parse:website')->hourly();
+        $schedule->command('queue:work --tries=3')
+            ->everyMinute()
+            ->withoutOverlapping();
     }
 
     /**
