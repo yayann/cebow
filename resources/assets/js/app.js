@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -7,16 +6,75 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+/*
+function listenForChanges() {
+    Echo.channel('posts')
+        .listen('PostPublished', post => {
+            if (!('Notification' in window)) {
+                alert('Web Notification is not supported');
+                return;
+            }
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+            Notification.requestPermission(permission => {
+                let notification = new Notification('New post alert!', {
+                    body: post.title, // content for the alert
+                    icon: "https://pusher.com/static_logos/320x320.png" // optional image url
+                });
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+                // link to page on clicking the notification
+                notification.onclick = () => {
+                    window.open(window.location.href);
+                };
+            });
+        })
+}*/
 
-const app = new Vue({
-    el: '#app'
+$(document).ready(function(){
+
+    if(window.Laravel.user) {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+            console.log('aw shucks, you don‘t have notifications…')
+        }
+
+        // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+        }
+
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== "denied") {
+            Notification.requestPermission(function (permission) {
+                // If the user accepts, let's create a notification
+                if (permission === "granted") {
+                    var notification = new Notification('CEB Outage Watcher', {
+                        body: "You'll be notified of new planned outages in your location watch list"
+                    });
+                }
+            });
+        }
+    }
+
 });
+
+window.Echo.private('user.' + window.Laravel.user)
+    .listen('UserLocationMatch', (e) => {
+        console.log(e);
+
+        if (! ('Notification' in window)) {
+            alert('Web Notification is not supported');
+            return;
+        }
+
+        Notification.requestPermission( permission => {
+            let notification = new Notification('CEB outage alert!', {
+                body: e.name, // content for the alert
+                icon: "https://pusher.com/static_logos/320x320.png", // optional image url
+                requireInteraction: true,
+            });
+
+            // link to page on clicking the notification
+            notification.onclick = () => {
+                window.open(window.location.href);
+            };
+        });
+    });

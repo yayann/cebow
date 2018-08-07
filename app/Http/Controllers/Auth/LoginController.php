@@ -13,6 +13,22 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo ;
+
+    /**
+     * LoginController constructor.
+     */
+    public function __construct()
+    {
+        $this->redirectTo = route('home');
+    }
+
+
+    /**
      * Redirect the user to the GitHub authentication page.
      *
      * @return \Illuminate\Http\Response
