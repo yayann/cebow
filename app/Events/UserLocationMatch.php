@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Entities\Outage;
 use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
@@ -18,14 +19,18 @@ class UserLocationMatch implements ShouldBroadcast
     /** @var  User */
     public $user;
 
+    /** @var Outage */
+    public $outage;
+
     /**
-     * Create a new event instance.
-     *
-     * @return void
+     * UserLocationMatch constructor.
+     * @param User $user
+     * @param Outage $outage
      */
-    public function __construct(User $user )
+    public function __construct(User $user, Outage $outage)
     {
         $this->user = $user;
+        $this->outage = $outage;
     }
 
     /**

@@ -16,18 +16,7 @@
                             <ul>
                                 @forelse($subscriptions as $subscription)
                                     <li>
-                                        <b>{{$subscription->locality}}</b>
-                                        @if($subscription->street)
-                                            : {{$subscription->street}}
-                                        @endif
-
-                                        {{ bs()->openForm('delete', route('subscriber.destroy', $subscription->id)) }}
-                                        {{ bs()->formGroup()
-                                                ->control(bs()->submit('Delete', 'danger')->sizeSmall()
-                                                ->child('<span class="fa fa-trash ml-2"></span>'))
-
-                                                }}
-                                        {{ bs()->closeForm() }}
+                                        @include('home.watched_place')
                                     </li>
                                 @empty
                                     No watched places yet

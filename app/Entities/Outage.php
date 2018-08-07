@@ -38,6 +38,8 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @method static \Illuminate\Database\Query\Builder|\App\Entities\Outage withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Entities\Outage withoutTrashed()
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Outage search($locality, $street = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Entities\Outage currentOrFuture()
  */
 class Outage extends Model implements Transformable
 {
@@ -60,7 +62,7 @@ class Outage extends Model implements Transformable
      */
     public function scopeFuture($query)
     {
-        return $query->where('outage_to', '>=', Carbon::now());
+        return $query->where('outage_from', '>=', Carbon::now());
     }
 
 
@@ -74,6 +76,22 @@ class Outage extends Model implements Transformable
             ->where('outage_to', '>=', Carbon::now());
     }
 
+    /**
+     * @param $query
+     */
+    public function scopeCurrentOrFuture($query)
+    {
+        return $query->where('outage_to', '>=', Carbon::now());
+    }
+
+    public function scopeSearch($query, $locality, $street = null)
+    {
+        return $query->where('locality', 'LIKE', '%'.$locality.'%')
+            ->when($street, function($query, $street) {
+                return $query->where('roads', 'LIKE', '%'.$street.'%');
+            });
+
+    }
 
     public function getPrettyPrintAttribute()
     {

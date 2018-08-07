@@ -14,7 +14,7 @@ class HomeController extends Controller
     {
 
         $outages = $outageRepository->scopeQuery(function($query){
-            return $query->future();
+            return $query->currentOrFuture();
         })->all();
 
         return view('welcome', compact('outages'));

@@ -67,8 +67,8 @@ window.Echo.private('user.' + window.Laravel.user)
 
         Notification.requestPermission( permission => {
             let notification = new Notification('CEB outage alert!', {
-                body: e.name, // content for the alert
-                icon: "https://pusher.com/static_logos/320x320.png", // optional image url
+                body: 'Planned outage in ' + e.outage.locality, // content for the alert
+                badge: "/img/power.png", // optional image url
                 requireInteraction: true,
             });
 
