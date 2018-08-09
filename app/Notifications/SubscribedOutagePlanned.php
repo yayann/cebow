@@ -47,6 +47,7 @@ class SubscribedOutagePlanned extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->from('no-reply@sugarsplashes.com')
             ->subject('CEB Outage Watcher: Planned outage notification')
             ->greeting("Hello " . $notifiable->name)
             ->line('New outage planned '. $this->outage->pretty_print)
