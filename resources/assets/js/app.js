@@ -29,6 +29,7 @@ function listenForChanges() {
         })
 }*/
 
+/*
 $(document).ready(function(){
 
     if(window.Laravel.user) {
@@ -55,6 +56,7 @@ $(document).ready(function(){
     }
 
 });
+*/
 
 window.Echo.private('user.' + window.Laravel.user)
     .listen('UserLocationMatch', (e) => {
