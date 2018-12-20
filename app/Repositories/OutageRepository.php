@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Carbon;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
@@ -12,4 +13,9 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface OutageRepository extends RepositoryInterface
 {
     //
+    /**
+     * @param $locality
+     * @return array
+     */
+    public function getPastYearOutagesByWeekStats($locality);
 }

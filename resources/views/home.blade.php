@@ -3,31 +3,29 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Dashboard</div>
+                    <div class="card-header">Places you're watching</div>
 
                     <div class="card-body">
 
                         <div class="pb-3">
-
-
-                            <h3>Places you're watching</h3>
-                            <ul>
-                                @forelse($subscriptions as $subscription)
-                                    <li>
-                                        @include('home.watched_place')
-                                    </li>
-                                @empty
-                                    No watched places yet
-                                @endforelse
-                            </ul>
+                            @forelse($subscriptions as $subscription)
+                                @include('home.watched_place')
+                            @empty
+                                No watched places yet
+                            @endforelse
 
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-5">
+                <div class="card">
+                    <div class="card-header">Watch for a new place</div>
+
+                    <div class="card-body">
                         <div class="pb-3">
-
-
-                            <h3>Watch for a new place</h3>
 
                             {{ bs()->openForm('post', route('subscriber.store')) }}
 

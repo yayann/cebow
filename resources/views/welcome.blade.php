@@ -25,5 +25,19 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="mt-5 row justify-content-center">
+            <div class="col-md-6">
+                <p class="text-center"><b>All time outages by day</b></p>
+                {!! $outages_by_day->container() !!}
+                {!! $outages_by_day->script() !!}
+            </div>
+            <div class="col-md-6">
+                <p class="text-center"><b>Outages by week in the past year</b></p>
+                {!! $outages_by_week->container() !!}
+                {!! $outages_by_week->script() !!}
+            </div>
+        </div>
     </div>
 @endsection
